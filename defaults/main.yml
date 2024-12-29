@@ -1,0 +1,45 @@
+---
+# defaults file for cesnet.exabgp_docker
+
+# Base path where the files will be copied or created
+exabgp_path: "/opt/exabgp"
+
+# List of directories which will be created (Path is relative to /)
+exabgp_dirs:
+  - { path: "{{ exabgp_path }}" }
+  - { path: "{{ exabgp_path }}/etc" }
+  - { path: "{{ exabgp_path }}/etc/exabgp" }
+
+# List of files which will be copied to machine
+# - Example value: - {src: "", dest: "", user: "", group: "", mode: ""} where:
+#    - src - required
+#    - dest - optional; Default value: same as src; Relative to exabgp_path
+#    - user - optional; Default value: root
+#    - group - optional; Default value: root
+#    - mode - optional; Default value: 0644
+exabgp_files: []
+
+#- exabgp_templates - List of templates
+#  - Example value: - {src: "", dest: "", user: "", group: "", mode: ""} where:
+#    - src - required
+#    - dest - optional; Default value: same as src; Relative to exabgp_path
+#    - user - optional; Default value: root
+#    - group - optional; Default value: root
+#    - mode - optional; Default value: 0644
+exabgp_templates: []
+
+# Name of the used docker-compose template
+exabgp_docker_compose_template: "default-docker-compose.yml"
+
+# List of volumes connected to docker
+# - Only for default docker_compose_template
+# - Example value: `- "/etc/docker/data_volume:/data_volume"`
+exabgp_custom_volumes: []
+
+# Name of the docker image
+# - Only for default docker_compose_template
+exabgp_docker_image: "pierky/exabgp:4.2.7"
+
+# If TRUE, exabgp docker will be started/restarted
+# If FALSE, exabgp docker will not be started/restarted
+exabgp_force_start: false

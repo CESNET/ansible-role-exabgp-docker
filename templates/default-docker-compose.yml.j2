@@ -1,0 +1,18 @@
+{{ ansible_managed | comment}}
+
+services:
+  exabgp:
+    image: {{ exabgp_docker_image }}
+    container_name: exabgp
+    volumes:
+      - {{ exabgp_path }}/etc/exabgp:/etc/exabgp:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+{% for volume in exabgp_custom_volumes | default([]) %}
+      - {{ volume }}
+{% endfor %}
+    network_mode: host
+    restart: always
+    logging:
+      driver: "syslog"
+      options:
+        tag: "proxyaai/exabgp"

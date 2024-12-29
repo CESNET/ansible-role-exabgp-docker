@@ -1,0 +1,7 @@
+---
+# tasks file for cesnet.exabgp
+- import_tasks: exabgp.yml
+  tags:
+    - exabgp
+
+- import_tasks: exabgp_controls.yml

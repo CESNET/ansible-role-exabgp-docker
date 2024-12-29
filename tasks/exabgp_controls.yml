@@ -1,0 +1,21 @@
+---
+- name: "EXABGP - RESTART docker"
+  command: /bin/true
+  tags:
+    - "never"
+    - "exabgp_restart"
+  notify: "docker exabgp force restart"
+
+- name: "EXABGP - STOP docker"
+  command: /bin/true
+  tags:
+    - "never"
+    - "exabgp_stop"
+  notify: "docker exabgp stop"
+
+- name: "EXABGP - START docker"
+  command: /bin/true
+  tags:
+    - "never"
+    - "exabgp_start"
+  notify: "docker exabgp force start"

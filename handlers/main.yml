@@ -1,0 +1,36 @@
+---
+# handlers file for cesnet.exabgp
+
+- name: "EXABGP - Restart"
+  community.docker.docker_compose_v2:
+    project_src: "{{ exabgp_path }}"
+    state: restarted
+  when: exabgp_force_start == True
+  listen: "docker exabgp restart"
+
+- name: "EXABGP - Force Restart"
+  community.docker.docker_compose_v2:
+    project_src: "{{ exabgp_path }}"
+    state: restarted
+  listen: "docker exabgp force restart"
+
+- name: "EXABGP - Stop"
+  community.docker.docker_compose_v2:
+    project_src: "{{ exabgp_path }}"
+    state: absent
+  listen: "docker exabgp stop"
+
+- name: "EXABGP - Start"
+  community.docker.docker_compose_v2:
+    project_src: "{{ exabgp_path }}"
+    state: present
+    pull: always
+  when: exabgp_force_start == True
+  listen: "docker exabgp start"
+
+- name: "EXABGP - Force Start"
+  community.docker.docker_compose_v2:
+    project_src: "{{ exabgp_path }}"
+    state: present
+    pull: always
+  listen: "docker exabgp force start"
